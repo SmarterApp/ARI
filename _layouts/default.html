@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<title>{{ page.title }}</title>
+{% include head.html %}
+</head>
+
+<body>
+
+<div id="main">
+	{% include header.html %}
+	<table><tr>
+	<td>
+		<a href="index.html">Introduction</a>
+		<a href="TestPackage.html">Test Package</a>
+		<a href="EmbeddedJavaScript.html">Embedded JavaScript</a>
+		<a href="RuntimeObjects.html">Runtime Objects</a>
+		<a href="DesignIssues.html">Design Issues</a>
+	</td>
+	<td>
+		<div id="content" style="min-height: 400px;">
+			{{ content }}
+		</div>
+	</td>
+	</tr></table>
+	{% include footer.html %}
+</div>
+
+</body>
+
+</html>
