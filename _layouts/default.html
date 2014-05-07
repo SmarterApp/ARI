@@ -10,20 +10,21 @@
 
 <div id="main">
 	{% include header.html %}
-	<table><tr>
-	<td>
-		<a href="index.html">Introduction</a>
-		<a href="TestPackage.html">Test Package</a>
-		<a href="EmbeddedJavaScript.html">Embedded JavaScript</a>
-		<a href="RuntimeObjects.html">Runtime Objects</a>
-		<a href="DesignIssues.html">Design Issues</a>
+	<table style="table-layout:fixed; width:100%; border-bottom: 1px silver solid;"><tbody><tr>
+	<td style="width: 80%;">
+		<h1>Accessible Rendered Item (Format)<br/>Proof of Concept</h1>
 	</td>
-	<td>
-		<div id="content" style="min-height: 400px;">
-			{{ content }}
-		</div>
+	<td style="vertical-align:top; font: 1.25em; width: 20%;">
+		<div style="margin-bottom: .5em; text-align:right;"><a href="{{ site.baseurl }}/index.html">Introduction</a></div>
+		<div style="margin-bottom: .5em; text-align:right;"><a href="{{ site.baseurl }}/TestPackage.html">Test Package</a></div>
+		<div style="margin-bottom: .5em; text-align:right;"><a href="{{ site.baseurl }}/EmbeddedJavaScript.html">Embedded JavaScript</a></div>
+		<div style="margin-bottom: .5em; text-align:right;"><a href="{{ site.baseurl }}/RuntimeObjects.html">Runtime Objects</a></div>
+		<div style="margin-bottom: .5em; text-align:right;"><a href="{{ site.baseurl }}/DesignIssues.html">Design Issues</a></div>
 	</td>
-	</tr></table>
+	</tr></tbody></table>
+	<div id="content" style="min-height: 400px;">
+		{{ content }}
+	</div>
 	{% include footer.html %}
 </div>
 

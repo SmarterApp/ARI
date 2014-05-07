@@ -1,9 +1,8 @@
 ---
 name: TestPackage.md
 title: ARI Test Package Organization
+layout: default
 ---
-
-# Accessible Rendered Item (Format)<br/>Proof of Concept
 
 # ARI Test Package Organization
 
@@ -40,27 +39,27 @@ To generate URLs that reference shared resources in the package, you SHOULD use 
 
 Filenames MAY or MAY NOT be case-sensitive depending on the hosting platform. Accordingly, references to files MUST use the same case as the filename. Likewise, there MUST NOT be two filenames that differ only in case.
 
-## <a name="item"></a>*items* Folder
+## *items* Folder
 
 The *items* folder contains one folder for each assessment item. Names of the subfolders MAY have any value so long as they are unique. However, the folder name of each SHOULD be the same as the assessment item name metadata tag in the header of item.  
 
-## <a name="item.ejs"></a>File *item.ejs*
+## File *item.ejs*
 
 *item.ejs* is an Embedded JavaScript file that generates an HTML fragment containing the assessment item. The primary purpose of the server-side JavaScript is to apply accessibility features according to student-specific settings. However, the JavaScript can also be used for other purposes such as generating items dynamically from JSON templates
 
 Items also have browser-side JavaScript to manage student interaction, and package the student response.
 
-Server-side JavaScript has access to the [ari_s](RuntimeObjects.html#ari_s) object including the [ari_s.a11y](RuntimeObjects.html#ari_s.a11y) property containing current accessibility settings.
+Server-side JavaScript has access to the [ari_s](RuntimeObjects.html#object-aris) object including the [ari_s.a11y](RuntimeObjects.html#property-a11y) property containing current accessibility settings.
 
-The browser-side HTML will be embedded in a &lt;div&gt; element that has the [ariA11y](RuntimeObjects.html#ariA11y) CSS class applied. This class will be set to the foreground and background colors specified by the student's accessibility settings.
+The browser-side HTML will be embedded in a &lt;div&gt; element that has the [ariA11y](RuntimeObjects.html#class-ariA11y) CSS class applied. This class will be set to the foreground and background colors specified by the student's accessibility settings.
 
-Browser-side JavaScript has access to the [ari_b](RuntimeObjects.html#ari_b) object. It should respond to the [ari_b.doupdate](RuntimeObjects.html#ari_b.doupdate) event and should set the student response in the [ari_b.response](RuntimeObjects.html#ari_b.response) object.
+Browser-side JavaScript has access to the [ari_b](RuntimeObjects.html#object-arib) object. It should respond to the [ari_b.doupdate](RuntimeObjects.html#event-doupdate) event and should set the student response in the [ari_b.response](RuntimeObjects.html#property-response) object.
 
-## <a name="item.ejs"></a>File *score.ejs*
+## File *score.ejs*
 
-*score.ejs* is an Embedded JavaScript file that scores items. As with *item.ejs*, the server-side JavaScript has access to the [ari_b](RuntimeObjects.html#ari_b) object. In this case, the server-side JavaScript is responsible for scoring the student response that is pre-loaded into [ari_b.response](RuntimeObjects.html#ari_b.response). The scored result MUST be placed into [ari_b.score](RuntimeObjects.html#ari_b.score).
+*score.ejs* is an Embedded JavaScript file that scores items. As with *item.ejs*, the server-side JavaScript has access to the [ari_b](RuntimeObjects.html#object-arib) object. In this case, the server-side JavaScript is responsible for scoring the student response that is pre-loaded into [ari_b.response](RuntimeObjects.html#property-response). The scored result MUST be placed into [ari_b.score](RuntimeObjects.html#property-score).
 
-It may seem like *score.ejs* could simply be a JavaScript file. However, bare JavaScript does not have the ability to include other file. In many cases, items will leverage shared JavaScript code to manage scoring of a particular item type so the EJS [include](EmbeddedJavaScript.html#include) directive is important.
+It may seem like *score.ejs* could simply be a JavaScript file. However, bare JavaScript does not have the ability to include other file. In many cases, items will leverage shared JavaScript code to manage scoring of a particular item type so the EJS [include](EmbeddedJavaScript.html#include-directive) directive is important.
 
 As an EJS file, *score.ejs* also generates HTML output. In the Proof of Concept, this is used to present the student's response and the score in a polished way. Other potential uses might be preparing the student response for human scoring or for providing feedback to the student when items are used in a formative context. 
 

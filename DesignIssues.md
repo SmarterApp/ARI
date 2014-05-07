@@ -1,9 +1,8 @@
 ---
 name: DesignIssues.md
 title: ARI Proof of Concept Issues
+layout: default
 ---
-
-# Accessible Rendered Item (Format)<br/>Proof of Concept
 
 # Design Issues to be Addressed
 
@@ -15,7 +14,7 @@ The ARI Proof of Concept shows has proven that Embedded JavaScript (EJS) is a vi
 The metadata information in EJS file headers uses [Mini YAML](https://code.google.com/p/mini-yaml-parser/) syntax. This adds one more syntax to the those already in use (HTML, JavaScript, JSON, and CSS). The syntax count could be reduced by using JSON syntax in the header instead of YAML.
 
 **Discussion**
-EJS files and server-side JavaScript includes start with a header that includes a filetype signature and metadata in [Mini YAML](https://code.google.com/p/mini-yaml-parser/) format. This choice was inspired by the use of YAML headers in [GitHub Pages]() and other [Jekyll]() deployments. Indeed, this document includes such a YAML header for use of Jekyll.
+EJS files and server-side JavaScript includes start with a header that includes a filetype signature and metadata in [Mini YAML](https://code.google.com/p/mini-yaml-parser/) format. This choice was inspired by the use of YAML headers in [GitHub Pages]() and other [Jekyll](http://jekyllrb.com/) deployments. Indeed, this document includes such a YAML header for use of Jekyll.
 
 Mini YAML is robust and intuitive; most programmers get it right without studying the syntax. It does not support escaping so there are some unusual character sequences that can't be embedded in Mini YAML values. Mini YAML could be expanded to [full YAML](http://yaml.org/) syntax to gain character escaping, hierarchical structure and lists.
 
@@ -67,7 +66,7 @@ Potential solutions:
 I (Brandt Redd) prefer option 4.
 
 ## Relative URLs
-EJS files can use relative URLs such as "res/image.png" to reference resources associated with the item. They can also use [ari_s.toLocalPath](RuntimeObjects.md#ari_s.toLocalPath) and [ari_b.toLocalPath](RuntimeObjects.md#ari_b.toLocalPath) to generate server-local paths for shared resource. However, relative URLs depend on the base URL of the page in which the item is embedded. This means that only one item can be embedded in any particular HTML page (unless frames are used). In order to support multiple items per page (at the discretion of the assessment delivery system) it may be appropriate to have functions for generating paths to item-specific resources and to shared resources.
+EJS files can use relative URLs such as "res/image.png" to reference resources associated with the item. They can also use [ari_s.toLocalPath](RuntimeObjects.html#method-tolocalpath) and [ari_b.toLocalPath](RuntimeObjects.html#method-tolocalpath) to generate server-local paths for shared resource. However, relative URLs depend on the base URL of the page in which the item is embedded. This means that only one item can be embedded in any particular HTML page (unless frames are used). In order to support multiple items per page (at the discretion of the assessment delivery system) it may be appropriate to have functions for generating paths to item-specific resources and to shared resources.
 
 However, there are other, more complicated, problems when rendering multiple items on a page. For example, items may use the same global variable names, or they may use conflicting JavaScript libraries. Therefore, frames approach (e.g. iFrames) may be the better option regardless.
 
@@ -75,6 +74,6 @@ However, there are other, more complicated, problems when rendering multiple ite
 
 ARI EJS files generate HTML Fragments. As a result, they don't have access to the HTML header. One problem with this is that an EJS file cannot specify a link to .css stylesheet file because such links must appear in the HTML header.
 
-The current solution is to use the [include directive](http://needlink) to include embed the literal CSS within &lt;style&gt; tags in the generated HTML. However, this negates the ability of the browser to cache stylesheets.
+The current solution is to use the [include directive](EmbeddedJavaScript.html#include-directive) to include embed the literal CSS within &lt;style&gt; tags in the generated HTML. However, this negates the ability of the browser to cache stylesheets.
 
-One potential remedy would be to add an "addLink" method to the [ari_s](http://needlink) object. Such a method would allow the EJS to specify CSS, JavaScript, and other links to be included in the page header.
+One potential remedy would be to add an "addLink" method to the [ari_s](RuntimeObjects.html#object-arib) object. Such a method would allow the EJS to specify CSS, JavaScript, and other links to be included in the page header.

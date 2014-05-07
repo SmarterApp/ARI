@@ -1,9 +1,8 @@
 ---
 name: EmbeddedJavaScript.md
 title: ARI Embedded JavaScript
+layout: default
 ---
-
-# Accessible Rendered Item (Format)<br/>Proof of Concept
 
 # ARI Embedded JavaScript File Format
 
@@ -34,13 +33,13 @@ Here is a sample header:
 
     <%#ejs
     name: tx-math-4312
-	title: Lunar Lander
-	description: |
+    title: Lunar Lander
+    description: |
        A simulation of a Luner Lander in which the student must calculate
        the amount of thrust required for a soft touchdown on the moon.
     uuid: 5ca84a80-d4bc-11e3-9c1a-0800200c9a66
     version: 3
-	%>	
+    %>
 
 ### Signature 
 
@@ -73,47 +72,47 @@ The header is concluded with a line containing just the following text. The clos
 The body of an EJS file consists of HTML with embedded JavaScript. Here's an example:
 
     <div>
-	<%#include "/common-res/layout-2.3/helpers.js" %>
+    <%#include "/common-res/layout-2.3/helpers.js" %>
         <h1>Lunar Lander</h1>
-		<ul>
-			<% for (var i=1; i<=10; ++i) { %>
-				<li><%= i %> Something</li>
-			<% } %>
-		</ul>
-	<div>
+        <ul>
+            <% for (var i=1; i<=10; ++i) { %>
+                <li><%= i %> Something</li>
+            <% } %>
+        </ul>
+    <div>
 
 ### HTML content
 
-HTML content is all file contents outside of EJS delimiters, "<%" and "%>". It is emitted unchanged though JavaScript conditionals and loops may affect the output as described below.
+HTML content is all file contents outside of EJS delimiters, `<%` and `%>`. It is emitted unchanged though JavaScript conditionals and loops may affect the output as described below.
 
-The HTML emitted by [item.ejs](
+See the [Test Package Documentation](TestPackage.html) for details on how the emitted HTML is treated.
 
 ### JavaScript segments
 
-A "<%" delimiter indicates the beginning of a JavaScript segment; "%>" indicates the end. Between the two delimiters can be any amount of JavaScript including function definitions, data definitions and so forth.
+A `<%` delimiter indicates the beginning of a JavaScript segment; `%>` indicates the end. Between the two delimiters can be any amount of JavaScript including function definitions, data definitions and so forth.
 
 HTML content that appears within a JavaScript loop will be repeated as many times as the loop executes. HTML that appears within a JavaScript conditional block (e.g. an "if" statement) will be conditionally emitted.
 
-JavaScript can also send content directly to the output by calling the [ari_s.write](RuntimeObjects.html#ari_s.write) method.
+JavaScript can also send content directly to the output by calling the [ari_s.write](RuntimeObjects.html#method-write) method.
 
-A "<%=" delimiter indicates a JavaScript expression that is terminated with a "%>" delimiter. The JavaScript expression between the two delimiters will be evaluated and the result is embedded in the generated HTML code.
+A `<%=` delimiter indicates a JavaScript expression that is terminated with a `%>` delimiter. The JavaScript expression between the two delimiters will be evaluated and the result is embedded in the generated HTML code.
 
 ### Include Directive
 
-EJS directives begin with the "<%#" delimiter followed by a directive name and the parameters of the directive. Presently the only EJS directives are the header (initiated by "<%#ejs" and documented above) and the "include" directive.
+EJS directives begin with the `<%#` delimiter followed by a directive name and the parameters of the directive. Presently the only EJS directives are the header (initiated by `<%#ejs` and documented above) and the "include" directive.
 
 Here are two sample include directives:
 
     <%#include "srv-res/layout.js" %>
-	<%#include "/common-srv-res/vocab-1.0/popupvocab.ejs" %>
+    <%#include "/common-srv-res/vocab-1.0/popupvocab.ejs" %>
 
-The opening delimiter, "<%#" is followed immediately by the directive name, "include", one or more spaces and then the filename in full quotes. The filename followed by the "%>" closing delimiter.
+The opening delimiter, `<%#` is followed immediately by the directive name, `include`, one or more spaces and then the filename in full quotes. The filename followed by the `%>` closing delimiter.
 
 Filenames are relative to the test package with a leading slash indicating the root of the package. For details on how files are organized into a package, see the [ARI Test Package](TestPackage.html) documentation.
 
-Include files may be EJS or plain JavaScript. No other include file types are supported. Keep in mind that these are server-side includes. Resource files such as images, browser-side JavaScript, video and so forth can be referenced in the HTML.
+Include files may be EJS or plain JavaScript. No other include file types are supported. Keep in mind that these are server-side includes. Resource files such as images, browser-side JavaScript, video and so forth can be referenced in the HTML and will be integrated on the browser side.
 
-The type of the include file (EJS or JavaScript) is determined by the file header, NOT by the filename extension. An EJS file must have the EJS header as described above.
+The type of the include file (EJS or JavaScript) is determined by the file header, NOT by the filename extension. An EJS file must have the EJS header as described in the [Header](#header) topic above.
 
 A JavaScript file included on the server side MUST begin with a header like the following example:
 
@@ -122,12 +121,14 @@ A JavaScript file included on the server side MUST begin with a header like the 
     description: Functions that assist in the layout of drag-and-drop assessment items.
     */
 
-The header must be the very first thing in the file. The metadata (name and description in the above example) is not used by the Proof of Concept implementation but the name, at a minimum, is recommended. Since this is a multi-line comment in JavaScript syntax it will be ignored by JavaScript parsers.
+The JavaScript header must be the very first thing in the file. The metadata (name and description in the above example) is not used by the Proof of Concept implementation but the name, at a minimum, is recommended. Since this is a multi-line comment in JavaScript syntax it will be ignored by JavaScript parsers.
 
 ## Implementation Notes
 
-The EJS file along with all includes is translated into one large JavaScript function. The sole parameter to the function is the "ari_s" object as described in the [Runtime Object](RuntimeObjects) documentation. All HTML content (everything outside of <% and %> delimiters) is converted into [ari_s.write](RuntimeObjects.html#ari_s.write) statements. Conveniently, JavaScript supports the definition of functions within other functions so functions embedded within EJS files (or their includes) require no special treatment.
+The EJS file along with all includes is translated into one large JavaScript function. The sole parameter to the function is the "ari_s" object as described in the [Runtime Object](RuntimeObjects.html) documentation. All HTML content (everything outside of <% and %> delimiters) is converted into [ari_s.write](RuntimeObjects.html#function-writestring) statements. Conveniently, JavaScript supports the definition of functions within other functions so functions embedded within EJS files (or their includes) require no special treatment.
 
 Once the EJS has been converted into straight JavaScript, the function is executed to generate the HTML stream that is sent to the browser. The Proof of Concept uses the Microsoft JScript.net compiler to compile the JavaScript into machine code. However, the syntax and concept are entirely compatible with other JavaScript/ECMAScript implementations.
 
 To reduce server load and increase performance in an actual deployment, the Compiled JavaScript and the generated HTML it produces could both be cached. Since the generated HTML will change according to accessibility, the accessibility settings would have to be included in the key to the rendered HTML cache whereas the compiled EJS would be valid regardless of variations in accessibility settings.
+
+The HTML page that hosts the assessment item must include JavaScript that implements the [ari_b](RuntimeObjects.html#object-ari_b) object. It would be convenient to use a JavaScript library such as JQuery to implement that page. However, it's possible, and likely that the assessment item itself uses JQuery. In order to minimize collisions between library use by the host page and the assessment item, JavaScript in the host page does not use JQuery. It is a minimal set of code sufficient to supply services needed by the item and to communicate the student response to with the server.

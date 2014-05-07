@@ -1,0 +1,4 @@
+timezone: America/New_York
+encoding: utf-8
+markdown: kramdown
+baseurl: http://www.smarterapp.org/ARI
