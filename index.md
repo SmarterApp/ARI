@@ -8,7 +8,7 @@ layout: default
 
 ARI is an experimental format for storing and transmitting pre-rendered assessment items while preserving the ability to apply accessibility features. A Proof of Concept is underway to validate whether the concept is viable and worth pursuing. Distributing pre-rendered assessment items in a test package has potential to facilitate innovation in assessment item types, increase fidelity of assessment delivery, and reduce the cost and complexity of compatible assessment delivery systems.
 
-**Phase 1 of the Proof of Concept is complete and the code is available at http://www.github.com/SmarterApp/ARI_POC**.
+**Phase 1 of the Proof of Concept is complete and the code is available at [http://www.github.com/SmarterApp/ARI_POC](http://www.github.com/SmarterApp/ARI_POC)**.
 
 ## The Problem
 
@@ -53,7 +53,7 @@ ARI is still an experimental format. Further validation and development is requi
 
 Future work would be divided into the following phases.
 
-* Phase 1: **Proof of Concept:** Encode one rich, interactive assessment item with accessibility features that can be optionally enabled. **The proof of concept phase is complete and the code has been posted with an open source license on GitHub at http://www.github.com/SmarterApp/ARI_POC**.
+* Phase 1: **Proof of Concept:** Encode one rich, interactive assessment item with accessibility features that can be optionally enabled. **The proof of concept phase is complete and the code has been posted with an open source license on GitHub at [http://www.github.com/SmarterApp/ARI_POC](http://www.github.com/SmarterApp/ARI_POC)**.
 * Phase 2: **Concept Validation:** Formalize the accessibility settings to match Smarter Balanced Specifications and hand-convert all items in the Smarter Balanced Training Tests. Show that all Smarter Balanced item types and accessibility features can be rendered. Show that all Smarter Balanced item types can be scored.
 * Phase 3: **Rendering:** Develop code to automatically render all Smarter Balanced item types from SBAIF to ARI.
 * Phase 4: **Specification:** Refine the draft documentation into a formal specification. Form a review committee and approve the specification. Update the code and encoded items to match the approved specification and release in open source as a reference implementation.
