@@ -6,17 +6,19 @@ layout: default
 
 #ARI Introduction
 
-ARI is an experimental format for storing and transmitting pre-rendered assessment items while preserving the ability to apply accessibility features. A Proof of Concept is underway to validate whether the concept is viable and worth pursuing. Distributing pre-rendered assessment items in a test package has potential to facilitate innovation in assessment item types, increase fidelity of assessment delivery, and reduce the cost and complexity of compatible assessment delivery systems.
+ARI is an experimental format for storing and transmitting pre-rendered assessment items with optional accessibility features. Distributing pre-rendered assessment items in a test package can facilitate innovation in assessment item types, increase fidelity of assessment delivery, and reduce the cost and complexity of compatible assessment delivery systems.
 
-**Phase 1 of the Proof of Concept is complete and the code is available at [http://www.github.com/SmarterApp/ARI_POC](http://www.github.com/SmarterApp/ARI_POC)**.
+A [Proof of Concept](http://www.github.com/SmarterApp/ARI_POC) is underway to prove whether ARI would be a valuable addition to the Smarter Balanced assessment platform.
 
 ## The Problem
 
-Smarter Balanced has approved a [dual-format strategy](http://www.smarterapp.org/spec/2013/11/25/specs-AssessmentItemFormatBrief.html) for the encoding of assessment items. It's a pragmatic strategy. The existing Smarter Balanced Assessment Item Format (SBAIF) supports all of the item types and accessibility features required by Smarter Balanced assessments. Compatibility with IMS APIP facilitates the exchange of assessment items between systems.
+Innovation in assessment is a core value at Smarter Balanced but the existing framework makes field testing experimental item types or deploying new item types complicated and expensive.
 
-However, this strategy greatly increases the cost of developing new assessment item types. In order to deploy a new interaction type, Smarter Balanced would have to define how the new type will be encoded in both Smarter Balanced and APIP formats; the specification changes have to be reviewed and approved; the open source assessment delivery system would have to be updated to support the new type; and all of the assessment delivery vendors who serve the Smarter Balanced states would have to include the new enhancement.
+Smarter Balanced has approved a [dual-format strategy](http://www.smarterapp.org/spec/2013/11/25/specs-AssessmentItemFormatBrief.html) for the encoding of assessment items. It's a pragmatic strategy; the existing Smarter Balanced Assessment Item Format (SBAIF) supports all of the item types and accessibility features required by Smarter Balanced assessments. Compatibility with IMS APIP facilitates the exchange of assessment items between systems.
 
-All of this effort requires a great deal of confidence that the new interaction type is effective and worthwhile. It becomes prohibitively complicated to field-test an experimental interaction type.
+However, in order to deploy a new interaction type, Smarter Balanced would have to define how the new type will be encoded in both Smarter Balanced and APIP formats; the specification changes would have to be reviewed and approved; the open source assessment delivery system would have to be updated to support the new type; and all of the assessment delivery vendors who serve the Smarter Balanced states would have to include the new enhancement.
+
+All of this effort requires a great deal of confidence that a new interaction type is effective and worthwhile. But it's difficult to gain confidence in a new interaction type without testing it at scale in the field. The existing Smarter Balanced technology framework is doesn't facilitate the innovation we seek. 
 
 ## Pre-Rendering Assessment Items
 
@@ -37,7 +39,7 @@ Pre-rendering is not a new idea. IMS QTI includes [Portable Custom Interactions]
 
 The [Accessible Rendered Item (Format) Proof of Concept](http://https://github.com/SmarterApp/ARI_POC) is an experiment to test whether JSON and server-side JavaScript can be applied to address these three issues. Among the design goals is to keep the format and specification as simple as possible. Phase 1 has successfully proven the ability to render and score a complex assessment item with multiple accessibility features.
 
-The three problems are solved by using JavaScript both on the server and on the browser side:
+The three issues are resolved by using JavaScript both on the server and on the browser side:
 
 1. On the server side, [Embedded JavaScript](EmbeddedJavaScript.html) is used to customize the rendered HTML to according to accessibility settings.
 2. Browser-side JavaScript manages the student interaction and collects the student response into a JavaScript object. The JavaScript object, containing the student response, is encoded in JSON and transmitted back to the server.
@@ -46,6 +48,12 @@ The three problems are solved by using JavaScript both on the server and on the 
 The ARI format is intended to be complementary to structured formats such as APIP. When authoring items it's important to retain the structure of the item so that it can be edited and updated throughout the authoring and review process. Frequently the tools used to author items are different from the tools used to add accessibility features. APIP and similar formats are a superior choice because structural information is lost when the item is rendered.
 
 Metaphorically, it's like the difference between a Word document, which can be easily edited, and a PDF docmument, which faithfully reproduces the look of the document across many platforms. APIP is like a Word document while ARI is like a PDF.
+
+In addition to facilitating innovation, using the ARI format has the following potential advantages:
+
+* **Increased fidelity of implementation:** Since items are pre-rendered, they will be delivered in the same form regardless of the assessment platform and regain common appearance and interaction.  
+* **Reduced cost of implementation:** Since Smarter Balanced states independently procure assessment delivery services, there will be a variety of implementations. Reducing this cost will save money for states and vendors and encourage more vendor participation.
+* **Reduced cost of code maintenance:** Support for new for new APIP or SBAIF features including new item types and new accessibility features is isolated to the item authoring tool rather than carrying through item banking, test packaging and assessment delivery.
 
 ## Project Status
 
