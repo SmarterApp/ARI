@@ -66,4 +66,5 @@ Future work would be divided into the following phases.
 * Phase 3: **Rendering:** Develop code to automatically render all Smarter Balanced item types from SBAIF to ARI.
 * Phase 4: **Specification:** Refine the draft documentation into a formal specification. Form a review committee and approve the specification. Update the code and encoded items to match the approved specification and release in open source as a reference implementation.
 * Phase 5: **Strategic Approval:** Gain approval from the Smarter Balanced Architecture Review Board to commit operational assessments to the ARI format.
-* Phase 5: **Integration:** Integrate ARI into the operational Smarter Balanced open source implementation.
+* Phase 6: **Integration:** Integrate ARI into the operational Smarter Balanced open source implementation.
+* Phase 7: **Standardization:** Submit the format to an open standards organization for governance.
