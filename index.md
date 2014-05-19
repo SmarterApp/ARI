@@ -37,7 +37,7 @@ Pre-rendering is not a new idea. IMS QTI includes [Portable Custom Interactions]
 2. Packaging student responses for unanticipated interaction types.
 3. Scoring custom student response types.
 
-The [Accessible Rendered Item (Format) Proof of Concept](http://https://github.com/SmarterApp/ARI_POC) is an experiment to test whether JSON and server-side JavaScript can be applied to address these three issues. Among the design goals is to keep the format and specification as simple as possible. Phase 1 has successfully proven the ability to render and score a complex assessment item with multiple accessibility features.
+The [Accessible Rendered Item (Format) Proof of Concept](http://github.com/SmarterApp/ARI_POC) is an experiment to test whether JSON and server-side JavaScript can be applied to address these three issues. Among the design goals is to keep the format and specification as simple as possible. Phase 1 has successfully proven the ability to render and score a complex assessment item with multiple accessibility features.
 
 The three issues are resolved by using JavaScript both on the server and on the browser side:
 
