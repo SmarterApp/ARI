@@ -12,7 +12,8 @@ The Accessible Rendered Item (ARI) format is an developmental format for storing
 
  * A [Proof of Concept](ProofOfConcept) was completed in May 2014.
  * The Technical Working Group met in November 2014 and [produced a report](2014-11-13_ARI_Technical_Working_Group_Report.pdf).
- * Under commission from Smarter Balanced and the [CCSSO](http://ccsso.org/) [UCLA CRESST](http://www.cse.ucla.edu/) has developed a prototype. The prototype code and specification will be posted on GitHub shortly.
+ * Under commission from Smarter Balanced and the [CCSSO](http://ccsso.org/) [UCLA CRESST](http://www.cse.ucla.edu/) has developed a prototype. The [software requirements specification is here](ARISoftwareSpecificationv2.pdf).
+ * We are developing a specification for the ARI Prototype itself which will be posted in November 2015.
 
 ## Other Resources
  * Dan Rehak contributed a set of [general recommendations for developing specifications standards](DevelopingSpecificationsForTheAccessibleRenderingItemFormat.pdf).
