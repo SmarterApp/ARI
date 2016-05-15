@@ -8,6 +8,6 @@ The [Accessibile Rendered Item](http://www.smarterapp.org/ARI/) (ARI) prototype 
 
 The prototype consists of the following resources:
 
-* [Technical Specification](ARI-Tech-Spec.pdf)
+* [Technical Specification](http://www.smarterapp.org/ARI/Prototype/ARI-Prototype-Tech-Spec.pdf)
 * [Source Code in Python and JavaScript](https://github.com/SmarterApp/ARI_Prototype) (posted on GitHub)
 * [Software Requirements](ARI-Prototype-Requirements.pdf)
